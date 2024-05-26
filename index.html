@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>Previsão de Riscos Cardíacos</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">Previsão de Riscos Cardíacos</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#previsao-de-riscos-cardiacos" class="nav-link">Previsão de Riscos Cardíacos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#aquisicao-de-bibliotecas-e-dados-necessarios-ao-projeto" class="nav-link">Aquisição de bibliotecas e dados necessários ao projeto.</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#importacao-das-bibliotecas" class="nav-link">Importação das Bibliotecas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#carregamento-dos-dados" class="nav-link">Carregamento dos Dados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#verificacao-dos-dados" class="nav-link">Verificação dos Dados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#analise-exploratoria" class="nav-link">Análise Exploratória</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#output" class="nav-link">Output</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#sex" class="nav-link">Sex</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#cp" class="nav-link">CP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#fbs" class="nav-link">FBS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#restecg" class="nav-link">RESTECG</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#exng" class="nav-link">EXNG</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#slp" class="nav-link">SLP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#thall" class="nav-link">THALL</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#distribuicao-normal-de-todas-as-colunas" class="nav-link">Distribuição normal de todas as colunas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#preparacao-dos-dados" class="nav-link">Preparação dos Dados</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#normalizacao-dos-dados" class="nav-link">Normalização dos Dados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#visualizacao-dos-dados-normalizados" class="nav-link">Visualização dos Dados Normalizados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#separacao-dos-dados" class="nav-link">Separação dos Dados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#treinamento-de-modelos" class="nav-link">Treinamento de Modelos</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#lista-de-modelos" class="nav-link">Lista de Modelos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#treinamento-e-avaliacao-dos-modelos" class="nav-link">Treinamento e Avaliação dos Modelos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#ajuste-de-hiperparametros" class="nav-link">Ajuste de Hiperparâmetros</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#ajuste-de-hiperparametros-com-gridsearchcv" class="nav-link">Ajuste de Hiperparâmetros com GridSearchCV</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#resultado" class="nav-link">Resultado</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#bibliografia" class="nav-link">Bibliografia</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="previsao-de-riscos-cardiacos">Previsão de Riscos Cardíacos</h1>
+<p>Bem-vindo à documentação do projeto de análise de dados e classificação de doenças cardíacas. Este projeto utiliza várias bibliotecas de aprendizado de máquina para analisar e prever a presença de doenças cardíacas com base em um conjunto de dados.</p>
+<h1 id="aquisicao-de-bibliotecas-e-dados-necessarios-ao-projeto">Aquisição de bibliotecas e dados necessários ao projeto.</h1>
+<p>Nesta seção, será importado todas as bibliotecas utilizadas durante o projeto, além do arquivo <code>csv</code> com os dados de treinamento.</p>
+<h2 id="importacao-das-bibliotecas">Importação das Bibliotecas</h2>
+<p>Aqui, estamos importando todas as bibliotecas necessárias para manipulação de dados, visualização e aprendizado de máquina.</p>
+<pre><code class="language-python">import pandas as pd
+import matplotlib.pyplot as plt 
+import seaborn as sns
+from sklearn.preprocessing import RobustScaler, LabelEncoder
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.metrics import accuracy_score, f1_score, make_scorer
+</code></pre>
+<h2 id="carregamento-dos-dados">Carregamento dos Dados</h2>
+<p>Carregamos o conjunto de dados heart.csv e configuramos o pandas para mostrar todas as linhas ao imprimir o DataFrame.</p>
+<pre><code class="language-python">df = pd.read_csv(&quot;./heart.csv&quot;)
+pd.set_option('display.max_rows', None)
+</code></pre>
+<h2 id="verificacao-dos-dados">Verificação dos Dados</h2>
+<p>Imprimimos o DataFrame, verificamos os tipos de dados, informações gerais e a presença de valores nulos.</p>
+<p>O comando <code>dtypes</code> mostra os tipos de dados em cada coluna do DataFrame.</p>
+<p><code>df.info()</code> fornece informações gerais sobre o DataFrame, incluindo o número de entradas não nulas em cada coluna.</p>
+<p><code>df.isnull().sum()</code> retorna a contagem de valores nulos em cada coluna do DataFrame.</p>
+<pre><code class="language-python">df.dtypes
+df.info()
+df.isnull().sum()
+</code></pre>
+<h1 id="analise-exploratoria">Análise Exploratória</h1>
+<p>Nessa fase, analisamos as distribuições das colunas do conjunto de dados.</p>
+<p>Esse código gera um gráfico de barras para a coluna <code>output</code>. Repetimos o processo para outras colunas categóricas (<code>sex</code>, <code>cp</code>, <code>fbs</code>, <code>restecg</code>, <code>exng</code>, <code>slp</code>, <code>thall</code>).</p>
+<h2 id="output">Output</h2>
+<pre><code class="language-python">plt.figure(figsize=(8, 6))
+column = &quot;output&quot;
+df[column].value_counts().plot(kind='bar', color='skyblue')
+plt.title(f'Contagem de valores em {column}')
+plt.xlabel(column)
+plt.ylabel('Contagem')
+plt.xticks(rotation=0)
+plt.show()
+</code></pre>
+<div style="text-align: center;">
+    <img src="./images/output.png" alt="Descrição da imagem" width="600">
+    <p style="margin-top: 10px; font-size: 12px; font-weight: bold;">Figura 1 - Valores da coluna output.</p>
+</div>
+
+<h2 id="sex">Sex</h2>
+<pre><code class="language-python">plt.figure(figsize=(8, 6))
+column = &quot;sex&quot;
+df[column].value_counts().plot(kind='bar', color='skyblue')
+plt.title(f'Contagem de valores em {column}')
+plt.xlabel(column)
+plt.ylabel('Contagem')
+plt.xticks(rotation=0)
+plt.show()
+</code></pre>
+<div style="text-align: center;">
+    <img src="./images/sex.png" alt="Descrição da imagem" width="600">
+    <p style="margin-top: 10px; font-size: 12px; font-weight: bold;">Figura 2 - Valores da coluna sex.</p>
+</div>
+
+<h2 id="cp">CP</h2>
+<pre><code class="language-python">plt.figure(figsize=(8, 6))
+column = &quot;cp&quot;
+df[column].value_counts().plot(kind='bar', color='skyblue')
+plt.title(f'Contagem de valores em {column}')
+plt.xlabel(column)
+plt.ylabel('Contagem')
+plt.xticks(rotation=0)
+plt.show()
+</code></pre>
+<div style="text-align: center;">
+    <img src="./images/cp.png" alt="Descrição da imagem" width="600">
+    <p style="margin-top: 10px; font-size: 12px; font-weight: bold;">Figura 3 - Valores da coluna cp.</p>
+</div>
+
+<h2 id="fbs">FBS</h2>
+<pre><code class="language-python">plt.figure(figsize=(8, 6))
+column = &quot;fbs&quot;
+df[column].value_counts().plot(kind='bar', color='skyblue')
+plt.title(f'Contagem de valores em {column}')
+plt.xlabel(column)
+plt.ylabel('Contagem')
+plt.xticks(rotation=0)
+plt.show()
+</code></pre>
+<div style="text-align: center;">
+    <img src="./images/fbs.png" alt="Descrição da imagem" width="600">
+    <p style="margin-top: 10px; font-size: 12px; font-weight: bold;">Figura 4 - Valores da coluna fbs.</p>
+</div>
+
+<h2 id="restecg">RESTECG</h2>
+<pre><code class="language-python">plt.figure(figsize=(8, 6))
+column = &quot;restecg&quot;
+df[column].value_counts().plot(kind='bar', color='skyblue')
+plt.title(f'Contagem de valores em {column}')
+plt.xlabel(column)
+plt.ylabel('Contagem')
+plt.xticks(rotation=0)
+plt.show()
+</code></pre>
+<div style="text-align: center;">
+    <img src="./images/restecg.png" alt="Descrição da imagem" width="600">
+    <p style="margin-top: 10px; font-size: 12px; font-weight: bold;">Figura 5 - Valores da coluna restecg.</p>
+</div>
+
+<h2 id="exng">EXNG</h2>
+<pre><code class="language-python">plt.figure(figsize=(8, 6))
+column = &quot;exng&quot;
+df[column].value_counts().plot(kind='bar', color='skyblue')
+plt.title(f'Contagem de valores em {column}')
+plt.xlabel(column)
+plt.ylabel('Contagem')
+plt.xticks(rotation=0)
+plt.show()
+</code></pre>
+<div style="text-align: center;">
+    <img src="./images/exng.png" alt="Descrição da imagem" width="600">
+    <p style="margin-top: 10px; font-size: 12px; font-weight: bold;">Figura 6 - Valores da coluna exng.</p>
+</div>
+
+<h2 id="slp">SLP</h2>
+<pre><code class="language-python">plt.figure(figsize=(8, 6))
+column = &quot;slp&quot;
+df[column].value_counts().plot(kind='bar', color='skyblue')
+plt.title(f'Contagem de valores em {column}')
+plt.xlabel(column)
+plt.ylabel('Contagem')
+plt.xticks(rotation=0)
+plt.show()
+</code></pre>
+<div style="text-align: center;">
+    <img src="./images/slp.png" alt="Descrição da imagem" width="600">
+    <p style="margin-top: 10px; font-size: 12px; font-weight: bold;">Figura 7 - Valores da coluna slp.</p>
+</div>
+
+<h2 id="thall">THALL</h2>
+<pre><code class="language-python">plt.figure(figsize=(8, 6))
+column = &quot;thall&quot;
+df[column].value_counts().plot(kind='bar', color='skyblue')
+plt.title(f'Contagem de valores em {column}')
+plt.xlabel(column)
+plt.ylabel('Contagem')
+plt.xticks(rotation=0)
+plt.show()
+</code></pre>
+<div style="text-align: center;">
+    <img src="./images/thall.png" alt="Descrição da imagem" width="600">
+    <p style="margin-top: 10px; font-size: 12px; font-weight: bold;">Figura 8 - Valores da coluna thall.</p>
+</div>
+
+<h2 id="distribuicao-normal-de-todas-as-colunas">Distribuição normal de todas as colunas</h2>
+<p>Observa-se a necessidade de normalizar os dados, devido a muitas features não estarem na distribuicao normal.</p>
+<pre><code class="language-python">plt.figure(figsize=(20, 15))
+for grafico, feature in enumerate(df.columns, 1):
+    plt.subplot(5, 3, grafico)
+    plt.title(f&quot;Distribuição dos dados da coluna {feature}&quot;)
+    sns.histplot(df[feature], kde=True)
+    plt.tight_layout()
+    plt.plot()
+</code></pre>
+<div style="text-align: center;">
+    <img src="./images/normal_distribution.png" alt="Descrição da imagem" width="600">
+    <p style="margin-top: 10px; font-size: 12px; font-weight: bold;">Figura 9 - Distribuição normal de todas as colunas.</p>
+</div>
+
+<h1 id="preparacao-dos-dados">Preparação dos Dados</h1>
+<p>Nessa fase, os dados serão preparados para a modelagem de aprendizado de máquina. Será realizado a limpeza dos dados, tratando valores, correção de outliers, codificação de variáveis categóricas e normalização.</p>
+<h2 id="normalizacao-dos-dados">Normalização dos Dados</h2>
+<p>Aqui, os dados serão normalizados usando RobustScaler e aplicamos get_dummies para transformar colunas categóricas em variáveis dummy.</p>
+<pre><code class="language-python">categorias = ['sex','exng','caa','cp','fbs','restecg','slp','thall']
+valores_numericos = ['age','trtbps','chol','thalachh','oldpeak']
+
+df = pd.get_dummies(df, columns=categorias, drop_first=True)
+
+X = df.drop(['output'], axis=1)
+y = df[['output']]
+
+y = y.values.reshape(-1)
+
+rs = RobustScaler()
+X[valores_numericos] = rs.fit_transform(X[valores_numericos])
+</code></pre>
+<h2 id="visualizacao-dos-dados-normalizados">Visualização dos Dados Normalizados</h2>
+<p>Visualizamos a distribuição das colunas após a normalização.</p>
+<pre><code class="language-python">plt.figure(figsize=(15, 20))
+
+for grafico, feature in enumerate(df.columns, 1):
+    plt.subplot(10, 3, grafico)
+    plt.title(f&quot;Distribuição dos dados da coluna {feature}&quot;)
+    sns.histplot(df[feature], kde=True)
+    plt.tight_layout()
+    plt.plot()
+</code></pre>
+<div style="text-align: center;">
+    <img src="./images/distribuition_after_normar.png" alt="Descrição da imagem" width="600">
+    <p style="margin-top: 10px; font-size: 12px; font-weight: bold;">Figura 10 - Distribuição das colunas após normalização.</p>
+</div>
+
+<h2 id="separacao-dos-dados">Separação dos Dados</h2>
+<p>Separamos os dados em conjuntos de treinamento e teste.</p>
+<pre><code class="language-python">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+</code></pre>
+<h1 id="treinamento-de-modelos">Treinamento de Modelos</h1>
+<p>Definimos uma lista de modelos para serem avaliados. Após uma pesquisa em grupo, foi selecionado uma lista de modelos de classificação binária que se adequavam ao problema a ser resolvido, sendo eles <code>Logistic Regression</code>, <code>Gradient Boosting</code>, <code>KNeighbors Classifier</code>, <code>Decision Tree Classifier</code>, <code>Random Forest</code>, <code>Naive Bayes Classifier</code>.</p>
+<h2 id="lista-de-modelos">Lista de Modelos</h2>
+<pre><code class="language-python">models = [
+    ('Logistic Regression', LogisticRegression(random_state=42)),
+    ('Gradient Boosting', GradientBoostingClassifier(random_state=42)),
+    ('KNeighbors Classifier', KNeighborsClassifier()),
+    ('Decision Tree Classifier', DecisionTreeClassifier(random_state=42)),
+    ('Random Forest', RandomForestClassifier(random_state=42)),
+    ('Naive Bayes Classifier', GaussianNB())
+]
+</code></pre>
+<h2 id="treinamento-e-avaliacao-dos-modelos">Treinamento e Avaliação dos Modelos</h2>
+<p>Neste trecho do código, treinamos cada modelo, calculamos a acurácia e o F1-score, e determinamos o melhor modelo com base nessas métricas.</p>
+<pre><code class="language-python">best_f1_model = None
+f1 = 0.0
+best_f1_score = 0.0
+best_accuracy_model = None
+accuracy = 0.0
+best_accuracy = 0.0
+
+for name, model in models:
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+    print(&quot;Model:    &quot;, name)
+    print(&quot;Accuracy: &quot;, accuracy)
+    print(&quot;F1-Score: &quot;, f1, &quot;\n&quot;)
+    if f1 &gt; best_f1_score:
+        best_f1_score = f1
+        best_f1_model = name
+    if accuracy &gt; best_accuracy:
+        best_accuracy = accuracy
+        best_accuracy_model = name
+
+print(&quot;Best Model by F1-Score: &quot;, best_f1_model)
+print(&quot;Best Model by Accuracy: &quot;, best_accuracy_model)
+</code></pre>
+<p>Verificou-se que os algoritmos regressão logística e KNeighbors e obteveram os melhores resultados de acurácia e F1-Score. Destacando o algoritmo de regressão logística que se mostrou muito promissor.</p>
+<div style="text-align: center;">
+    <img src="./images/result_train.PNG" alt="Descrição da imagem" width="600">
+    <p style="margin-top: 10px; font-size: 12px; font-weight: bold;">Figura 11 - Resultado do treinamento.</p>
+</div>
+
+<h1 id="ajuste-de-hiperparametros">Ajuste de Hiperparâmetros</h1>
+<p>Nesta seção, é realizado o ajuste de hiperparâmetros para melhorar o desempenho dos modelos. Para cada modelo, foram levantados os hiperparâmetros mais promissores visando aumentar o desempenho dos mesmos</p>
+<p>Em seguida, foi aplicado o método de validação cruzada, dividindo o conjunto de dados em cinco partes para evitar o overfitting</p>
+<h2 id="ajuste-de-hiperparametros-com-gridsearchcv">Ajuste de Hiperparâmetros com GridSearchCV</h2>
+<p>Neste trecho, usamos GridSearchCV para encontrar os melhores parâmetros para cada modelo, maximizando o F1-score.</p>
+<pre><code class="language-python">new_models = [
+    ('Logistic Regression', LogisticRegression(random_state=42)),
+    ('Gradient Boosting', GradientBoostingClassifier(random_state=42)),
+    ('KNeighbors Classifier', KNeighborsClassifier()),
+    ('Decision Tree Classifier', DecisionTreeClassifier(random_state=42)),
+    ('Random Forest', RandomForestClassifier(random_state=42)),
+    ('Naive Bayes Classifier', GaussianNB())
+]
+
+def hyperparameter_tuning(X_train, X_test, y_train, y_test, models):
+    results = {}
+
+    for model_name, model in models:
+        param_grid = {}
+        if model_name == 'Logistic Regression':
+            param_grid = {'C': [0.001, 0.01, 0.1, 1, 10, 100]}
+        elif model_name == 'KNeighbors Classifier':
+            param_grid = {'n_neighbors': [3, 5, 7, 9]}
+        elif model_name == 'Naive Bayes Classifier':
+            param_grid = {'var_smoothing': [1e-9, 1e-8, 1e-7, 1e-6]}
+        elif model_name == 'Decision Tree Classifier':
+            param_grid = {'max_depth': [None, 10, 20, 30], 'min_samples_split': [2, 5, 10]}
+        elif model_name == 'Random Forest':
+            param_grid = {'n_estimators': [100, 200, 300], 'max_depth': [None, 10, 20, 30], 'min_samples_split': [2, 5, 10]}
+        elif model_name == 'Gradient Boosting':
+            param_grid = {'learning_rate': [0.01, 0.1, 0.2], 'n_estimators': [100, 200, 300], 'max_depth': [3, 5, 7]}
+
+        scoring = {'Accuracy': make_scorer(accuracy_score), 'F1': make_scorer(f1_score, average='macro')}
+
+        grid_search = GridSearchCV(model, param_grid, cv=5, scoring=scoring, refit='F1')
+        grid_search.fit(X_train, y_train)
+
+        best_params = grid_search.best_params_
+        best_model = grid_search.best_estimator_
+        test_accuracy = best_model.score(X_test, y_test)
+        y_pred = best_model.predict(X_test)
+        test_f1 = f1_score(y_test, y_pred, average='macro')
+
+        results[model_name] = {
+            'best_params': best_params,
+            'validation_accuracy': grid_search.cv_results_['mean_test_Accuracy'][grid_search.best_index_],
+            'validation_f1': grid_search.cv_results_['mean_test_F1'][grid_search.best_index_],
+            'test_accuracy': test_accuracy,
+            'test_f1': test_f1,
+        }
+
+    return results
+
+results = hyperparameter_tuning(X_train, X_test, y_train, y_test, new_models)
+</code></pre>
+<p>Em seguida, visualizamos os resultados.</p>
+<pre><code class="language-python">for model_name, info in results.items():
+    print(f&quot;Model: {model_name}&quot;)
+    print(f&quot;Best Parameters: {info['best_params']}&quot;)
+    print(f&quot;Validation Accuracy: {info['validation_accuracy']:.4f}&quot;)
+    print(f&quot;Validation F1: {info['validation_f1']:.4f}&quot;)
+    print(f&quot;Test Accuracy: {info['test_accuracy']:.4f}&quot;)
+    print(f&quot;Test F1: {info['test_f1']:.4f}&quot;)
+    print(&quot;-&quot; * 40)
+</code></pre>
+<div style="text-align: center;">
+    <img src="./images/result_train_after_tuning.PNG" alt="Descrição da imagem" width="600">
+    <p style="margin-top: 10px; font-size: 12px; font-weight: bold;">Figura 12 - Resultado do treinamento após ajuste de hiperparâmetros.</p>
+</div>
+
+<h2 id="resultado">Resultado</h2>
+<p>Entre os modelos avaliados, o Logistic Regression apresentou o melhor desempenho geral, com uma acurácia de 0.8204 e um score F1 de 0.8462, indicando um excelente equilíbrio entre precisão e recall.</p>
+<h2 id="bibliografia">Bibliografia</h2>
+<p>Janosi,Andras, Steinbrunn,William, Pfisterer,Matthias, and Detrano,Robert. (1988). Heart Disease. UCI Machine Learning Repository. <a href="https://doi.org/10.24432/C52P4X">https://doi.org/10.24432/C52P4X</a>
+.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js"></script>
+        <script src="search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.5.3
+Build Date UTC : 2024-05-26 14:41:52.092077+00:00
+-->
